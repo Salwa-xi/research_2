@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بحث</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Shamel:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+    <style>
+        :root {
+            --primary-color: #4D886C;
+            --secondary-color: #345b49;
+            --border-color: #4D886C;
+            --text-color: #ffffff;
+        }
+
+        body {
+            font-family: 'Shamel', sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            text-align: right; /* تغيير اتجاه النص إلى اليمين */
+            direction: rtl; /* تغيير اتجاه الصفحة إلى اليمين */
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .section-padding {
+            padding-top: 140px;
+            padding-bottom: 140px;
+        }
+
+        #hero {
+            background: linear-gradient(#0e3f5ac9, #0e3f5ac9, #4d886cc7), url('image 66.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            background-attachment: scroll;
+            min-height: 70vh !important; 
+            padding-top: 70px !important;
+            padding-bottom: 70px !important;
+        }
+
+        #logo {
+            position: absolute;
+            top: 5%;
+            right: 5%; /* تغيير الموضع إلى اليمين */
+            width: 15vw; 
+            height: auto;
+        }
+
+        @media (max-width: 768px) {
+            #logo {
+                width: 20vw;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            #logo {
+                width: 8vw;
+            }
+        }
+
+        .nav-tabs {
+            border-bottom: none;
+        }
+
+        .nav-link {
+            border: 2px solid var(--primary-color);
+            border-radius: 0;
+            color: var(--primary-color);
+            margin-right: -1px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .tab-content {
+            border: 4px dashed var(--primary-color);
+            border-radius: 8px;
+            padding: 70px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .nav-buttons a {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            padding: 10px 20px;
+            font-size: 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-buttons a:hover {
+            background-color: var(--secondary-color);
+        }
+
+        
+/*responsive hero section*/
+
+@media (max-width: 768px) {
+    #hero {
+        background-size: cover;
+        padding-top: 50px !important;
+        padding-bottom: 50px !important;
+    }
+
+    .nav-buttons {
+        flex-direction: row;
+        padding: 10px;
+    }
+
+    .nav-buttons a {
+        font-size: 12px;
+        margin: 5px ;
+        padding: 8px 10px;
+    }
+}
+
+        .content-section {
+            margin: 50px 0;
+            padding: 20px;
+        }
+
+        .content-section h2 {
+            color: var(--primary-color);
+            border-right: 5px solid var(--primary-color); /* تغيير الحدود إلى اليمين */
+            padding-right: 15px; /* تغيير الحشوة إلى اليمين */
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        #about {
+            border: 4px dashed var(--primary-color);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .scientific-achievement-tabs .nav-link.active {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            border-radius: 10px; 
+            font-weight: bold; 
+        }
+
+        .scientific-achievement-tabs .nav-link {
+            border: 2px solid var(--primary-color);
+            border-radius: 10px; 
+            color: var(--primary-color);
+            transition: background-color 0.3s, color 0.3s;
+            margin: 2px;
+
+        }
+
+        .scientific-achievement-tabs .nav-link:hover {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+        }
+
+        .tabs {
+            border: 4px dashed var(--primary-color);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .team-slider {
+            position: relative;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+
+        .team-slider-wrapper {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 10px 0;
+            gap: 20px;
+        }
+
+        .team-card {
+            position: relative;
+            flex: 0 0 auto;
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 0 0 4px var(--primary-color), 0 4px 8px rgba(0, 0, 0, 0.2); 
+        }
+
+        .team-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            text-align: center;
+        }
+
+        .team-card:hover .team-info {
+            opacity: 1;
+        }
+
+        .contact-info a {
+            margin: 0 5px;
+            display: inline-block;
+        }
+
+        .contact-info img {
+            width: 10px;
+            height: auto;
+            vertical-align: middle;
+        }
+
+    </style>
+</head>
+<body>
+    <section id="hero" class="min-vh-100 d-flex align-items-center text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Logo -->
+                    <img src="CEIES Logo@4x 1-min.png" alt="الشعار" id="logo">
+                    <h1 class="text-white">تقنيات الدفاع   </h1>
+                    <h5 class="text-white mt-5 mb-5">تقنيات الدفاع تشمل الأساليب والأدوات لحماية الأنظمة من الهجمات، مثل الجدران النارية والتشفير والكشف عن التسلل.</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="nav-buttons">
+        <a class="btn btn-brand" href="#about">عن المجموعة</a>
+        <a class="btn btn-brand" href="#scientific-achievement">الإنجاز العلمي</a>
+        <a class="btn btn-brand" href="#education">التعليم</a>
+        <a class="btn btn-brand" href="#team">فريق العمل</a>
+    </div>
+   
+
+    <div id="about" class="content-section">
+        <h2>عن المجموعة</h2>
+        <p>  تقنيات الدفاع تشمل أنظمة الدفاع الجوي والصاروخي لحماية الأجواء من التهديدات الجوية، والدفاعات السيبرانية التي تحمي الأنظمة الرقمية من الهجمات الإلكترونية. كما تتضمن تقنيات الاستخبارات والمراقبة لجمع وتحليل المعلومات بهدف الكشف عن التهديدات المحتملة. هذه التقنيات تلعب دورًا أساسيًا في تعزيز أمن الدول وحماية سيادتها ومصالحها الحيوية. </p>
+    </div>
+
+
+    <div id="scientific-achievement" class="content-section">
+        <div class="container mt-5">
+            <h2>الإنجاز العلمي</h2>
+            <div class="row">
+                <div class="col-md-3">
+                    <ul class="nav nav-tabs flex-column scientific-achievement-tabs" id="scientificAchievementTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="publications-tab" data-bs-toggle="tab" href="#publications" role="tab" aria-controls="publications" aria-selected="true">منشورات</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="all-publications-tab" data-bs-toggle="tab" href="#all-publications" role="tab" aria-controls="all-publications" aria-selected="false">جميع المنشورات</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="awards-tab" data-bs-toggle="tab" href="#awards" role="tab" aria-controls="awards" aria-selected="false">الجوائز العلمية</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="media-tab" data-bs-toggle="tab" href="#media" role="tab" aria-controls="media" aria-selected="false">المؤاتمرات </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-9">
+                    <div class="tab-content tabs" id="scientificAchievementTabsContent">
+                        <div class="tab-pane fade show active" id="publications" role="tabpanel" aria-labelledby="publications-tab">
+                            <h4>منشورات</h4>
+                            <p>1.تحليل فعالية أنظمة الدفاع الجوي والصاروخي: تتناول هذه الدراسة تقنيات التصدي للتهديدات الجوية مثل الطائرات والصواريخ، وتقييم أداء أنظمة الدفاع المستخدمة في حماية الأجواء.</p>
+    <p>2.بحث في الأمن السيبراني والحماية من الهجمات الإلكترونية: يستعرض البحث أحدث الأساليب والتقنيات لحماية الأنظمة الإلكترونية والبنية التحتية من الهجمات الإلكترونية المتطورة.</p>
+    <p>3.دراسة حول تقنيات الاستخبارات والمراقبة: تقدم الدراسة تحليلًا للتقنيات المستخدمة في جمع المعلومات وتحليلها لتحديد التهديدات الأمنية والتعامل معها بشكل فعال.</p>
+    <p>4.مقالة عن الابتكارات في تكنولوجيا الدفاع البيولوجي والكيميائي: تستعرض المقالة التطورات في تقنيات الكشف والعلاج للحماية من الأسلحة البيولوجية والكيميائية.</p>
+    <p>5.تحليل استراتيجيات الدفاع الوطني وأثرها على الأمن القومي: تبحث هذه الدراسة في استراتيجيات الدفاع الوطنية وكيفية تعزيز الأمن القومي من خلال تطبيق أحدث التقنيات والتكتيكات الدفاعية.</p>
+</div>
+                        <div class="tab-pane fade" id="all-publications" role="tabpanel" aria-labelledby="all-publications-tab">
+                            <h4>جميع المنشورات</h4>
+                            <p>محتوى حول جميع المنشورات.</p>
+                        </div>
+                        <div class="tab-pane fade" id="awards" role="tabpanel" aria-labelledby="awards-tab">
+                            <h4>  الجوائزالعلمية</h4>
+                            <p>محتوى حول الجوائز.</p>
+                        </div>
+                        <div class="tab-pane fade" id="media" role="tabpanel" aria-labelledby="media-tab">
+                            <h4>المؤتمرات العلمية </h4>
+                            <p>محتوى حول وسائل الإعلام.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div id="education" class="content-section">
+        <h2>التعليم</h2>
+        <ul class="nav nav-tabs" id="educationTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="researchers-tab" data-bs-toggle="tab" data-bs-target="#researchers" type="button" role="tab" aria-controls="researchers" aria-selected="true">الباحثون</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="phd-students-tab" data-bs-toggle="tab" data-bs-target="#phd-students" type="button" role="tab" aria-controls="phd-students" aria-selected="false">طلاب الدكتوراه</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="masters-students-tab" data-bs-toggle="tab" data-bs-target="#masters-students" type="button" role="tab" aria-controls="masters-students" aria-selected="false">طلاب الماجستير</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="bachelor-students-tab" data-bs-toggle="tab" data-bs-target="#bachelor-students" type="button" role="tab" aria-controls="bachelor-students" aria-selected="false">طلاب البكالوريوس</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="educationTabContent">
+            <div class="tab-pane fade show active" id="researchers" role="tabpanel" aria-labelledby="researchers-tab">
+                <div class="content-section-inner">
+                    <div>
+                        <p> قائمة الباحثين الذين يعملون في مشروع تقنيات الدفاع لهدف إلى تعزيز البحث العلمي وتطوير المعرفة في المجال.</p>
+                        <ul>
+                            <li>د. أحمد علي</li>
+                            <li>د. سارة محمد</li>
+                            <li>د. يوسف عبد الله</li>
+                        </ul>
+                    </div>
+                    <img src="image 65.png" alt="باحث" class="img-fluid float-end ms-3">
+                </div>
+            </div>
+            <div class="tab-pane fade" id="phd-students" role="tabpanel" aria-labelledby="phd-students-tab">
+                <div class="content-section-inner">
+                    <div>
+                        <p>هؤلاء هم طلاب الدكتوراه الذين يعملون على أطروحاتهم في مجالات متنوعة. نحن ملتزمون بدعمهم في تحقيق أهدافهم الأكاديمية والبحثية.</p>
+                        <ul>
+                            <li>علي حسن</li>
+                            <li>نورا خالد</li>
+                            <li>أحمد سعيد</li>
+                        </ul>
+                    </div>
+                    <img src="https://via.placeholder.com/150" alt="طالب دكتوراه" class="img-fluid float-end ms-3">
+                </div>
+            </div>
+            <div class="tab-pane fade" id="masters-students" role="tabpanel" aria-labelledby="masters-students-tab">
+                <div class="content-section-inner">
+                    <div>
+                        <p>طلاب الماجستير لدينا يكرسون جهدهم لدراسة موضوعاتهم بعمق. نحن نقدم لهم جميع الموارد اللازمة لدعم تقدمهم الأكاديمي.</p>
+                        <ul>
+                            <li>ريم محمد</li>
+                            <li>مروان عادل</li>
+                            <li>سلمى حسين</li>
+                        </ul>
+                    </div>
+                    <img src="https://via.placeholder.com/150" alt="طالب ماجستير" class="img-fluid float-end ms-3">
+                </div>
+            </div>
+            <div class="tab-pane fade" id="bachelor-students" role="tabpanel" aria-labelledby="bachelor-students-tab">
+                <div class="content-section-inner">
+                    <div>
+                        <p>طلاب البكالوريوس هم أساس المستقبل الأكاديمي. نحن ملتزمون بتوفير بيئة تعليمية تدعمهم في مسيرتهم التعليمية وتساعدهم على تحقيق أهدافهم.</p>
+                        <ul>
+                            <li>محمود كريم</li>
+                            <li>سارة يوسف</li>
+                            <li>طارق جابر</li>
+                        </ul>
+                    </div>
+                    <img src="https://via.placeholder.com/150" alt="طالب بكالوريوس" class="img-fluid float-end ms-3">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <style>
+        .content-section-inner {
+            display: flex;
+            align-items: start;
+            justify-content: space-between;
+        }
+        .content-section-inner img {
+            max-width: 300px;
+            height: auto;
+        }
+        .content-section-inner div {
+            max-width: calc(100% - 170px); /* Adjust this value to provide enough space for text next to the image */
+        }
+    </style>
+    
+
+  
+
+<!-- تأكد من إضافة رابط Font Awesome في <head> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <div id="team" class="content-section">
+        <h2>فريق العمل</h2>
+        <div class="team-slider">
+            <div class="team-slider-wrapper">
+                <div class="team-card">
+                    <div class="team-card-inner">
+                        <img src="person1.png" alt="فريق 1">
+                        <div class="team-hover-overlay"></div>
+                        <div class="team-info">
+                            <h5>د.ياسر الكندي</h5>
+                            <p>مدير الإدارة</p>
+                            <div class="team-social-icons">
+                                <a href="mailto:email@example.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+                                <a href="https://twitter.com/example" class="social-icon"><i class="fab fa-twitter"></i></a>
+                                <a href="https://www.linkedin.com/in/example" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-card-inner">
+                        <img src="person2.png" alt="فريق 2">
+                        <div class="team-hover-overlay"></div>
+                        <div class="team-info">
+                            <h5>عضو الفريق 2</h5>
+                            <p>وصف قصير.</p>
+                            <div class="team-social-icons">
+                                <a href="mailto:email@example.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+                                <a href="https://twitter.com/example" class="social-icon"><i class="fab fa-twitter"></i></a>
+                                <a href="https://www.linkedin.com/in/example" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- أضف المزيد من البطاقات حسب الحاجة -->
+
+                <div class="team-card">
+                    <div class="team-card-inner">
+                        <img src="person3.png" alt="فريق 2">
+                        <div class="team-hover-overlay"></div>
+                        <div class="team-info">
+                            <h5>عضو الفريق 2</h5>
+                            <p>وصف قصير.</p>
+                            <div class="team-social-icons">
+                                <a href="mailto:email@example.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+                                <a href="https://twitter.com/example" class="social-icon"><i class="fab fa-twitter"></i></a>
+                                <a href="https://www.linkedin.com/in/example" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-card-inner">
+                        <img src="person4.png" alt="فريق 2">
+                        <div class="team-hover-overlay"></div>
+                        <div class="team-info">
+                            <h5>عضو الفريق 2</h5>
+                            <p>وصف قصير.</p>
+                            <div class="team-social-icons">
+                                <a href="mailto:email@example.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+                                <a href="https://twitter.com/example" class="social-icon"><i class="fab fa-twitter"></i></a>
+                                <a href="https://www.linkedin.com/in/example" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <style>
+        .team-slider-wrapper {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding-right: 1%;
+        }
+        .team-card {
+            position: relative;
+            width: 200px;
+            height: 250px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 1 4px 8px rgba(0, 0, 0, 0.2);
+            border: 3px double transparent; /* لون الحدود الشفاف ليظهر التأثير عند التمرير */
+            border-radius: 10px;
+            transition: border-color 0.3s ease;
+        }
+        .team-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .team-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+        .team-hover-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(77, 136, 112, 0.695); /* أخضر شفاف */
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+        .team-card:hover .team-hover-overlay {
+            opacity: 1;
+        }
+        .team-card:hover {
+            border-color: #4d8870; /* تغيير لون الحدود عند التمرير */
+            border-width: 6px; /* عرض الحدود */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* تحسين الظل مع التمرير */
+        }
+        .team-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(77, 136, 112, 0);
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            z-index: 2;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        .team-card:hover .team-info {
+            transform: translateY(0);
+        }
+        .team-social-icons {
+            margin-top: 10px;
+        }
+        .social-icon {
+            color: #fff;
+            margin: 0 5px;
+            text-decoration: none;
+            font-size: 20px;
+            transition: color 0.3s ease;
+        }
+        .social-icon:hover {
+            color: #1a4f4c; /* لون التأثير عند التمرير */
+        }
+    </style>
+    
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
